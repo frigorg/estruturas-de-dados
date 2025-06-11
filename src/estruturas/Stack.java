@@ -13,7 +13,9 @@ public class Stack<T> {
 	
 	public void push(T element) {
 		Node<T> temp = head;
-		head = new Node<T>(element, temp);
+		Node<T> newElement = new Node<T>(element, null, temp);
+		temp.setPrevious(newElement);
+		head = newElement;
 	}
 		
 	public T pop() {

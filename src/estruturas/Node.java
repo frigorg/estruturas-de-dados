@@ -3,10 +3,12 @@ package estruturas;
 public class Node<T> {
 	private T content;
 	private Node<T> next;
+	private Node<T> previous;
 	
-	public Node(T element, Node<T> next) {
+	public Node(T element,Node<T> previous, Node<T> next) {
 		super();
 		this.content = element;
+		this.previous = previous;
 		this.next = next;
 	}
 
@@ -25,12 +27,18 @@ public class Node<T> {
 	public void setNext(Node<T> next) {
 		this.next = next;
 	}
+	
+	public Node<T> getPrevious() {
+		return previous;
+	}
+
+	public void setPrevious(Node<T> previous) {
+		this.previous = previous;
+	}
 
 	@Override
 	public String toString() {
 		return "" + content;
 	}
-	
-	
-	
+		
 }
