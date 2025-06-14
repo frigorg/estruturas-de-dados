@@ -1,4 +1,4 @@
-package estruturas.simples;
+package estruturas.encadeamento_simples;
 
 import java.util.NoSuchElementException;
 

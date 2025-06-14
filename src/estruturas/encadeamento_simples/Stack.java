@@ -1,4 +1,4 @@
-package estruturas.simples;
+package estruturas.encadeamento_simples;
 
 public class Stack<T> {
 	private Node<T> top;

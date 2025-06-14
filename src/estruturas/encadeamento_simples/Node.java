@@ -1,4 +1,4 @@
-package estruturas.simples;
+package estruturas.encadeamento_simples;
 
 public class Node<T> {
 	private T content;

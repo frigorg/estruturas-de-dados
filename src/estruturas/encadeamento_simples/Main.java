@@ -1,6 +1,4 @@
-package estruturas;
-
-import estruturas.simples.*;
+package estruturas.encadeamento_simples;
 
 public class Main {
 
