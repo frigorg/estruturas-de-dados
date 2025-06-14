@@ -40,7 +40,20 @@ public class LinkedList<T> {
 		
 		pointer.setNext(new Node<T>(element, null));
 		size++;
-		
+	}
+	
+	private Node<T> getNode(int index) {
+		if (index >= size || index < 0)
+			throw new IndexOutOfBoundsException();
+		Node<T> pointer = head;
+		for (int i = 0; i < index; i++) {
+			pointer = pointer.getNext();
+		}
+		return pointer;		
+	}
+	
+	public T get(int index) {
+		return getNode(index).getContent();
 	}
 	
 	public void add(int index, T element) {
@@ -58,14 +71,9 @@ public class LinkedList<T> {
 			return;
 		}
 		
-		Node<T> pointer = head;
-		for (int i = 1; i<=index; i++) {
-			if (i==index) {
-				pointer.setNext(new Node<T>(element, pointer.getNext()));
-				size++;
-			}
-			pointer = pointer.getNext();
-		}
+		Node<T> pointer = getNode(index-1);
+		pointer.setNext(new Node<T>(element, pointer.getNext()));
+		size++;
 	}
 	
 	public T remove() {
@@ -84,30 +92,12 @@ public class LinkedList<T> {
 		if (index == 0) 
 			return remove();
 		
-		T aux = null;
-		Node<T> pointer = head;
-		for (int i = 1; i<=index; i++) {
-			if (i==index) {
-				aux = pointer.getNext().getContent();
-				pointer.setNext(pointer.getNext().getNext());
-				size--;
-			}
-			pointer = pointer.getNext();
-		}
-		return aux;
+		Node<T> pointer = getNode(index-1);
+		T returningValue = pointer.getNext().getContent();
+		pointer.setNext(pointer.getNext().getNext());
+		size--;
+		return returningValue;
 	}
-	
-	public T get(int index) {
-		if (index >= size || index < 0)
-			throw new IndexOutOfBoundsException();
-		
-		Node<T> pointer = head;
-		for (int i = 0; i < index; i++) {
-			pointer = pointer.getNext();
-		}
-		return pointer.getContent();
-	}
-	
 
 	@Override
 	public String toString() {
@@ -119,7 +109,4 @@ public class LinkedList<T> {
 		}
 		return "LinkedList " + output;
 	}
-	
-	
-
 }
