@@ -42,20 +42,35 @@ public class Main {
 		assert(fila.dequeue() == 3):"Terceiro elemento a sair deveria ser 3";
 		assert(fila.dequeue() == 4):"Terceiro elemento a sair deveria ser 4";
 		
-		/*
-		Queue<Integer> fila = new Queue<Integer>();
-		assert(fila.isEmpty()):"Fila deveria estar vazia.";
-		fila.dequeue();
-		assert(fila.isEmpty()):"Fila deveria estar vazia.";
-		fila.enqueue(1);
-		assert(!fila.isEmpty()):"Fila não deveria estar vazia.";
-		fila.enqueue(2);
-		assert(!fila.isEmpty()):"Fila não deveria estar vazia.";
-		fila.dequeue();
-		assert(!fila.isEmpty()):"Fila não deveria estar vazia.";
-		fila.dequeue();
-		assert(fila.isEmpty()):"Fila deveria estar vazia.";
-		*/
+		LinkedList<Integer> lista = new LinkedList<Integer>();
+		System.out.println(lista);
+		assert(lista.isEmpty()):"A lista deveria estar vazia.";
+		assert(lista.size() == 0):"A lista deveria ter 0 elementos.";
+		lista.add(1);
+		assert(!lista.isEmpty()):"A lista não deveria estar vazia.";
+		assert(lista.size() == 1):"A lista deveria ter 1 elemento.";
+		lista.add(2);
+		assert(lista.size() == 2):"A lista deveria ter 2 elementos.";
+		lista.add(3);
+		assert(lista.size() == 3):"A lista deveria ter 3 elementos.";
+		lista.add(2,99);
+		System.out.println(lista);
+		assert(lista.remove() == 1):"Deveria ter removido o 1";
+		assert(lista.remove(1) == 99):"Deveria ter removido o 99";
+		assert(lista.remove() == 2):"Deveria ter removido o 2";
+		assert(lista.remove() == 3):"Deveria ter removido o 3";
+		assert(lista.isEmpty()):"A lista deveria estar vazia.";
+		
+		lista.add(1);
+		lista.add(2);
+		lista.add(3);
+		lista.add(4);
+		assert(lista.get(0) == 1):"Deveria ter retornado 1";
+		assert(lista.get(1) == 2):"Deveria ter retornado 2";
+		assert(lista.get(3) == 4):"Deveria ter retornado 4";
+		assert(lista.remove(0) == 1):"Deveria ter removido o 1";
+		assert(lista.remove(2) == 4):"Deveria ter removido o 4";
+		System.out.println(lista);
 		
 		/*
 		Node<Integer> N1 = new Node<Integer>(1, null, null);
