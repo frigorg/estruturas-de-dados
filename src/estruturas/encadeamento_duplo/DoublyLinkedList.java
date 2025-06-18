@@ -14,6 +14,10 @@ public class DoublyLinkedList<T> {
 		this.first = null;
 		this.last = null;
 	}
+	
+	public int size() {
+		return size;
+	}
 
 	public boolean isEmpty() {
 		if (size == 0) 
@@ -22,14 +26,14 @@ public class DoublyLinkedList<T> {
 	}
 	
 	private Node<T> getNode(int index) {
-		if (index > size || index < 0)
+		if (index >= size || index < 0)
 			throw new IndexOutOfBoundsException();
 		
 		if (isEmpty()) 
 			throw new NoSuchElementException();
 		
 		Node<T> iterator = first;
-		for (int i = 1; i<=index; i++) 
+		for (int i = 0; i<index; i++) 
 			iterator = iterator.getNext();
 		return iterator;
 	}
@@ -94,6 +98,74 @@ public class DoublyLinkedList<T> {
 		iterator.getPrevious().setNext(newElement);
 		iterator.setPrevious(newElement);
 		size++;
+	}
+	
+	public T remove() {
+		if (isEmpty()) 
+			throw new NoSuchElementException();
+		
+		if (size == 1) {
+			Node<T> aux = first;
+			first = last = null;
+			size--;
+			
+			return aux.getElement();
+		}
+		
+		Node<T> aux = first;
+		first = first.getNext();
+		first.setPrevious(null);
+		size--;
+		
+		return aux.getElement();
+	}
+	
+	public T removeFirst() {
+		return remove();
+	}
+	
+	public T removeLast() {
+		if (isEmpty()) 
+			throw new NoSuchElementException();
+		
+		if (size == 1) {
+			Node<T> aux = first;
+			first = last = null;
+			size--;
+			
+			return aux.getElement();
+		}
+		
+		Node<T> aux = last;
+		last = last.getPrevious();
+		last.setNext(null);
+		size--;
+				
+		return aux.getElement();
+	}
+	
+	public T remove(int index) {
+		if (index >= size || index < 0)
+			throw new IndexOutOfBoundsException();
+		
+		if (isEmpty()) 
+			throw new NoSuchElementException();
+		
+		if (size == 1) 
+			return remove();
+		
+		if (index == 0)
+			return removeFirst();
+		
+		if (index == size-1)
+			return removeLast();
+		
+		Node<T> aux = getNode(index);
+		aux.getPrevious().setNext(aux.getNext());
+		aux.getNext().setPrevious(aux.getPrevious());
+		size--;
+		
+		return aux.getElement();
 	}
 	
 	@Override
