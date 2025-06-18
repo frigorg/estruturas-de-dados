@@ -10,11 +10,13 @@ public class Main {
 		arvore.add(5);
 		arvore.add(7);
 		arvore.add(6);
-		arvore.add(6);
+		arvore.add(1);
 		arvore.add(15);
 		arvore.add(13);
 		arvore.add(12);
 		arvore.add(17);
+		
+
 
 	}
 

@@ -20,9 +20,9 @@ public class BinaryTree<T extends Comparable<T>> {
 		return size == 0 ? true : false;
 	}
 	
-	private Node<T> findSmaller(Node<T> startingNode) {
+	private Node<T> findSmallerNode(Node<T> startingNode) {
 		if (startingNode == null)
-			throw new NoSuchElementException();
+			return null;
 			
 		Node<T> iterator = startingNode;
 		while (iterator.getLeft() != null) 
@@ -31,9 +31,14 @@ public class BinaryTree<T extends Comparable<T>> {
 		return iterator;
 	}
 	
-	private Node<T> findBiggest(Node<T> startingNode) {
+	public T findSmaller(){
+		Node <T> output =  findSmallerNode(root);
+		return output == null ? null : output.getContent();
+	}
+	
+	private Node<T> findBiggestNode(Node<T> startingNode) {
 		if (startingNode == null)
-			throw new NoSuchElementException();
+			return null;
 			
 		Node<T> iterator = startingNode;
 		while (iterator.getRight() != null) 
@@ -41,10 +46,29 @@ public class BinaryTree<T extends Comparable<T>> {
 		
 		return iterator;
 	}
+	
+	public T findBiggest(){
+		Node <T> output =  findBiggestNode(root);
+		return output == null ? null : output.getContent();
+	}
 
 	private Node<T> findNode(T element) {
-		//TODO
-		return null;
+		
+		Node<T> iterator = root;
+		while(true) {
+			if (iterator == null) 
+				return null;
+			else if (element.compareTo(iterator.getContent()) == -1) 
+				iterator = iterator.getLeft();
+			else if (element.compareTo(iterator.getContent()) == 1)
+				iterator = iterator.getRight();
+			else
+				return iterator;
+		}
+	}
+	
+	public boolean find(T element) {
+		return findNode(element) == null ? false : true;
 	}
 	
 	public void add(T element) {
@@ -57,9 +81,9 @@ public class BinaryTree<T extends Comparable<T>> {
 		Node<T> iterator = root;
 		
 		while(true) {
-			if (element.compareTo(iterator.getContent()) == -1 && iterator.getLeft() != null) {
+			if (element.compareTo(iterator.getContent()) == -1 && iterator.getLeft() != null) 
 				iterator = iterator.getLeft();
-			} else if (element.compareTo(iterator.getContent()) == 1 && iterator.getRight() != null)
+			else if (element.compareTo(iterator.getContent()) == 1 && iterator.getRight() != null)
 				iterator = iterator.getRight();
 			else
 				break;
@@ -79,5 +103,7 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 		
 	}
+	
+	
 	
 }
